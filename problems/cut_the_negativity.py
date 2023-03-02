@@ -1,26 +1,25 @@
-from problem import Problem
 import sys
 
 
-class CutTheNegativity(Problem):
+class CutTheNegativity:
     title = "Cut the Negativity"
     sample_input_1 = """4
--1 1 -1 2
-9 -1 -1 -1
--1 3 -1 4
-7 1 2 -1
-"""
+    -1 1 -1 2
+    9 -1 -1 -1
+    -1 3 -1 4
+    7 1 2 -1
+    """.splitlines()
     sample_input_2 = """3
--1 -1 -1
-15 -1 -1
-2 2 -1
-"""
-    sample_input = [sample_input_1, sample_input_2]
+    -1 -1 -1
+    15 -1 -1
+    2 2 -1
+    """.splitlines()
 
-    def solve(self):
+    def solve(self, problem_input):
+        if problem_input is None:
+            problem_input = self.sample_input_1
         routes = []
-        # for i, line in enumerate(sys.stdin):
-        for i, line in enumerate(self.sample_input[0].splitlines()):
+        for i, line in enumerate(problem_input):
             if i == 0:
                 continue
             prices = line.split()
@@ -37,4 +36,4 @@ class CutTheNegativity(Problem):
 
 
 if __name__ == "__main__":
-    CutTheNegativity().solve()
+    CutTheNegativity().solve(sys.stdin)
