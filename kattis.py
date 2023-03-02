@@ -13,7 +13,11 @@ problem = problems["Cut the Negativity"]
 
 
 def main():
-    problem.solve(problem_input=problem.sample_input_1)
+    output1 = problem.solve(problem_input=problem.sample_input_1)
+    assert output1 == problem.sample_output_1
+    output2 = problem.solve(problem_input=problem.sample_input_2)
+    assert output2 == problem.sample_output_2
+    print(output1)
 
 
 if __name__ == "__main__":
