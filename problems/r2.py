@@ -1,15 +1,23 @@
 from sys import stdin
 
-title = "R2"
-problem_id = "r2"
-sample_input_1 = """11 15
+samples = [
+    (
+        # Sample Input 1
+        """11 15
+""".strip(),
+        # Sample Output 1
+        """19
 """.strip()
-sample_input_2 = """4 3
+    ),
+    (
+        # Sample Input 2
+        """4 3
+""".strip(),
+        # Sample Output 2
+        """2
 """.strip()
-sample_output_1 = """19
-""".strip()
-sample_output_2 = """2
-""".strip()
+    ),
+]
 
 
 def solve(problem_input: str):
