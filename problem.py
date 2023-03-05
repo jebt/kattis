@@ -4,7 +4,8 @@ from typing import TextIO
 
 class Problem(ABC):
     @abstractmethod
-    def title(self) -> str: ...
+    def title(self) -> str:
+        ...
 
     @abstractmethod
     def solve(self, problem_input: TextIO) -> str:

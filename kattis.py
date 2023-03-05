@@ -1,9 +1,10 @@
-from problems import hello_world, cut_the_negativity, homework
+from problems import hello_world, cut_the_negativity, homework, r2
 
 problems = {
     "Hello World!": hello_world.HelloWorld(),
     "Cut the Negativity": cut_the_negativity.CutTheNegativity(),
     "Homework": homework.Homework(),
+    "R2": r2,
 }
 
 for k, v in problems.items():
@@ -11,7 +12,7 @@ for k, v in problems.items():
 
 # problem = problems["Hello World!"]
 # problem = problems["Cut the Negativity"]
-problem = problems["Homework"]
+problem = problems["R2"]
 
 
 def main():
@@ -19,11 +20,11 @@ def main():
     # assert output1 == problem.sample_output_1
     output2 = problem.solve(problem_input=problem.sample_input_2)
     # assert output2 == problem.sample_output_2
-    output3 = problem.solve(problem_input=problem.sample_input_3)
+    # output3 = problem.solve(problem_input=problem.sample_input_3)
 
     print(output1)
     print(output2)
-    print(output3)
+    # print(output3)
 
 
 if __name__ == "__main__":
