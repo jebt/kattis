@@ -1,4 +1,4 @@
-import problems.oddecho as problem
+import problems.jumbojavelin as problem
 from utils import diff_strings
 
 
