@@ -1,4 +1,4 @@
-import problems.quadrant as problem
+import problems.oddecho as problem
 from utils import diff_strings
 
 
