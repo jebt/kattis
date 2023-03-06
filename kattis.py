@@ -1,4 +1,4 @@
-import problems.jumbojavelin as problem
+import problems.archive.jumbojavelin as problem
 from utils import diff_strings
 
 

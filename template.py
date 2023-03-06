@@ -2,22 +2,22 @@ from sys import stdin
 
 samples = [
     (
-        # Sample Input 1
-        """sample_input_1""".strip(),
-        # Sample Output 1
-        """sample_output_1""".strip()
+        # Input 1
+        """input_1""".strip(),
+        # Output 1
+        """output_1""".strip()
     ),
     (
-        # Sample Input 2
-        """sample_input_2""".strip(),
-        # Sample Output 2
-        """sample_output_2""".strip()
+        # Input 2
+        """input_2""".strip(),
+        # Output 2
+        """output_2""".strip()
     ),
     # (
-    #     # Sample Input 3
-    #     """sample_input_3""".strip(),
-    #     # Sample Output 3
-    #     """sample_output_3""".strip()
+    #     # Input 3
+    #     """input_3""".strip(),
+    #     # Output 3
+    #     """output_3""".strip()
     # ),
 ]
 
