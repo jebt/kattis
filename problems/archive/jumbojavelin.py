@@ -8,10 +8,10 @@ samples = [
 34
 18
 9
-""".strip(),
+""",
         # Sample Output 1
         """79
-""".strip()
+"""
     ),
     (
         # Sample Input 2
@@ -19,10 +19,10 @@ samples = [
 1
 50
 40
-""".strip(),
+""",
         # Sample Output 2
         """89
-""".strip()
+"""
     ),
 ]
 

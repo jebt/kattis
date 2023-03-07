@@ -5,19 +5,19 @@ samples = [
         # Sample Input 1
         """10
 6
-""".strip(),
+""",
         # Sample Output 1
         """1
-""".strip()
+"""
     ),
     (
         # Sample Input 2
         """9
 -13
-""".strip(),
+""",
         # Sample Output 2
         """4
-""".strip()
+"""
     ),
 ]
 

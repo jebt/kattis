@@ -8,7 +8,7 @@ samples = [
 9 -1 -1 -1
 -1 3 -1 4
 7 1 2 -1
-""".strip(),
+""",
         # Sample Output 1
         """8
 1 2 1
@@ -20,7 +20,7 @@ samples = [
 4 2 1
 4 3 2
 
-""".strip()
+"""
     ),
     (
         # Sample Input 2
@@ -28,13 +28,13 @@ samples = [
 -1 -1 -1
 15 -1 -1
 2 2 -1
-""".strip(),
+""",
         # Sample Output 2
         """3
 2 1 15
 3 1 2
 3 2 2
-""".strip()
+"""
     ),
 ]
 

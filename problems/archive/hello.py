@@ -3,9 +3,9 @@ from sys import stdin
 samples = [
     (
         # Sample Input 1
-        """sample_input_1""".strip(),
+        """sample_input_1""",
         # Sample Output 1
-        """Hello World!""".strip()
+        """Hello World!"""
     ),
 ]
 

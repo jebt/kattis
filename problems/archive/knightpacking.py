@@ -4,26 +4,26 @@ samples = [
     (
         # Sample Input 1
         """1
-""".strip(),
+""",
         # Sample Output 1
         """first
-""".strip()
+"""
     ),
     (
         # Sample Input 2
         """2
-""".strip(),
+""",
         # Sample Output 2
         """second
-""".strip()
+"""
     ),
     (
         # Sample Input 3
         """3
-""".strip(),
+""",
         # Sample Output 3
         """first
-""".strip()
+"""
     ),
 ]
 

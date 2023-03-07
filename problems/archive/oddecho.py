@@ -9,12 +9,12 @@ i
 am
 an
 echo
-""".strip(),
+""",
         # Sample Output 1
         """hello
 am
 echo
-""".strip()
+"""
     ),
     (
         # Sample Input 2
@@ -29,14 +29,14 @@ are
 you
 correct
 output
-""".strip(),
+""",
         # Sample Output 2
         """only
 these
 words
 are
 correct
-""".strip()
+"""
     ),
 ]
 

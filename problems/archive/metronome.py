@@ -4,18 +4,18 @@ samples = [
     (
         # Sample Input 1
         """16
-""".strip(),
+""",
         # Sample Output 1
         """4.0
-""".strip()
+"""
     ),
     (
         # Sample Input 2
         """99
-""".strip(),
+""",
         # Sample Output 2
         """24.75
-""".strip()
+"""
     ),
 ]
 

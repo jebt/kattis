@@ -3,21 +3,27 @@ from sys import stdin
 samples = [
     (
         # Input 1
-        """input_1""".strip(),
+        """input_1""",
         # Output 1
-        """output_1""".strip()
+        """output_1"""
     ),
     (
         # Input 2
-        """input_2""".strip(),
+        """input_2""",
         # Output 2
-        """output_2""".strip()
+        """output_2"""
     ),
     # (
     #     # Input 3
-    #     """input_3""".strip(),
+    #     """input_3""",
     #     # Output 3
-    #     """output_3""".strip()
+    #     """output_3"""
+    # ),
+    # (
+    #     # Input 4
+    #     """input_4""",
+    #     # Output 4
+    #     """output_4"""
     # ),
 ]
 
