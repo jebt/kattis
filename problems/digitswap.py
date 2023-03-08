@@ -21,8 +21,7 @@ samples = [
 
 
 def solve(problem_input: str):
-    digits = problem_input.strip()
-    return f"{digits[1]}{digits[0]}"
+    return problem_input[1] + problem_input[0]
 
 
 if __name__ == "__main__":
