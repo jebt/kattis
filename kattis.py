@@ -2,7 +2,7 @@ import importlib
 from os import listdir
 from os.path import splitext
 
-import problems.countthevowels as current_problem
+import problems.betting as current_problem
 from utils import diff_strings
 
 
