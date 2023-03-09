@@ -2,7 +2,7 @@ import importlib
 from os import listdir
 from os.path import splitext
 
-import problems.batterup as current_problem
+import problems.filip as current_problem
 from utils import diff_strings
 
 
