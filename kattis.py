@@ -1,15 +1,18 @@
 import importlib
 import re
 import sys
+import webbrowser
 from os import listdir
 from os.path import splitext, isfile
 
 import requests
 
-import problems.triarea as current_problem
+import problems.autori as current_problem
 from utils import diff_strings
 
-problem_id = "next"
+# problem_id = "next"
+problem_id = "current_problem"
+
 problem_locations = ["problems/archive", "problems"]
 
 
@@ -32,7 +35,11 @@ def main():
 
 def set_up_next():
     next_problem_id = find_next_problem_id()
+
     # open the webpage with the problem description
+    url = f"https://open.kattis.com/problems/{next_problem_id}"
+    webbrowser.open(url)
+
     # check if it exists locally
     next_exists = False
     next_problem_path = None
@@ -148,7 +155,6 @@ def scrape_and_create_problem_module(next_problem_id: str, next_problem_path: st
         if match_count > 6:
             new_module = new_module.replace("input_4", i4)
             new_module = new_module.replace("output_4", o4)
-        print(new_module)
     else:
         print("No samples found!")
         raise NotImplementedError
