@@ -13,18 +13,18 @@ samples = [
         # Output 2
         """output_2"""
     ),
-    # (
-    #     # Input 3
-    #     """input_3""",
-    #     # Output 3
-    #     """output_3"""
-    # ),
-    # (
-    #     # Input 4
-    #     """input_4""",
-    #     # Output 4
-    #     """output_4"""
-    # ),
+    (
+        # Input 3
+        """input_3""",
+        # Output 3
+        """output_3"""
+    ),
+    (
+        # Input 4
+        """input_4""",
+        # Output 4
+        """output_4"""
+    ),
 ]
 
 
