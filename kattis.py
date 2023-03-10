@@ -1,5 +1,7 @@
 import importlib
+import os
 import re
+import subprocess
 import sys
 import webbrowser
 from os import listdir
@@ -7,10 +9,10 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.twostones as current_problem
+import problems.timeloop as current_problem
 from utils import diff_strings
 
-problem_id = "twostones"
+problem_id = "timeloop"
 # problem_id = "current_problem"
 
 problem_locations = ["problems/archive", "problems"]
@@ -25,12 +27,25 @@ def main():
     # problems = get_problems()
     for problem in problems:
         print(f"\n{problem.__name__}")
+        succes = True
         for i, (sample_input, sample_output) in enumerate(problem.samples):
             calculated_output = str(problem.solve(sample_input))
             if calculated_output == sample_output.strip():
                 print(f"[sample {i}] correct")
             else:
+                succes = False
                 print(f"[sample {i}] see diff below\n" + diff_strings(calculated_output, sample_output))
+        if succes:
+            # Get the path of the current Python executable and the current script
+            python_exe = sys.executable
+            script_path = os.path.join(os.getcwd(), 'submit.py')
+
+            # Activate the virtual environment
+            venv_activate = os.path.join(os.getcwd(), 'venv', 'Scripts', 'activate')
+            subprocess.run([venv_activate], shell=True)
+
+            # Call the script with an argument 'argument1'
+            subprocess.run([python_exe, script_path, f'problems/{problem_id}.py'])
 
 
 def set_up_next():
