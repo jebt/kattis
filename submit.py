@@ -258,9 +258,10 @@ def open_submission(submit_response, cfg):
     m = re.search(r'Submission URL: (\S+)', submit_response)
     if m:
         url = m.group(1)
-        print('Open in browser (y/N)?')
-        if sys.stdin.readline().upper()[:-1] == 'Y':
-            webbrowser.open(url)
+        # print('Open in browser (y/N)?')
+        # if sys.stdin.readline().upper()[:-1] == 'Y':
+        #     webbrowser.open(url)
+        webbrowser.open(url)
 
 
 def main():
