@@ -7,11 +7,11 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.twosum as current_problem
+import problems.twostones as current_problem
 from utils import diff_strings
 
-# problem_id = "next"
-problem_id = "current_problem"
+problem_id = "twostones"
+# problem_id = "current_problem"
 
 problem_locations = ["problems/archive", "problems"]
 
@@ -58,7 +58,7 @@ def set_up_next():
         next_problem_path = f"problems/{next_problem_id}.py"
         scrape_and_create_problem_module(next_problem_id, next_problem_path)
         # change problem_id = "..." (if possible during runtime)
-        change_code(next_problem_path)
+        change_code(next_problem_id)
         # import problems.{problem_id} as problem and run it
         set_and_run_problem_module(next_problem_path)
 
@@ -70,6 +70,25 @@ def set_and_run_problem_module(problem_path):
 
 
 def change_code(next_problem_id: str):
+    with open("kattis.py") as f:
+        kattis_code = f.read()
+    new_kattis_code = kattis_code.replace('pro' + 'blem_id = "ne' + 'xt"', f'problem_id = "{next_problem_id}"')
+
+    # import statement
+    pattern = r'import\s+problems\.(\w+)\s+as\s+current_problem'
+    match = re.search(pattern, new_kattis_code)
+    if match:
+        captured_string = match.group(1)
+    else:
+        print("No match")
+        raise ValueError
+    new_kattis_code = new_kattis_code.replace(
+        f"import problems.{captured_string} as current_problem", f"import problems.{next_problem_id} as current_problem"
+    )
+
+    with open("kattis.py", "w") as f:
+        f.write(new_kattis_code)
+
     raise NotImplementedError
     # change import statement?
     # change "problem_id = ..."?
@@ -161,8 +180,6 @@ def scrape_and_create_problem_module(next_problem_id: str, next_problem_path: st
 
     with open(next_problem_path, "w") as file:
         file.write(new_module)
-
-    raise NotImplementedError
 
 
 def find_next_problem_id():
