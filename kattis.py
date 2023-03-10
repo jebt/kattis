@@ -7,7 +7,7 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.whichisgreater as current_problem
+import problems.twosum as current_problem
 from utils import diff_strings
 
 # problem_id = "next"
