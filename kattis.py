@@ -7,7 +7,7 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.autori as current_problem
+import problems.whichisgreater as current_problem
 from utils import diff_strings
 
 # problem_id = "next"
