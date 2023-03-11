@@ -9,10 +9,10 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.stopwatch as current_problem
+import problems.spavanac as current_problem
 from utils import diff_strings
 
-problem_id = "stopwatch"
+problem_id = "spavanac"
 # problem_id = "current_problem"
 
 problem_locations = ["problems/archive", "problems"]
@@ -57,7 +57,6 @@ def set_up_next():
 
     # check if it exists locally
     next_exists = False
-    next_problem_path = None
     for location in problem_locations:
         file_name_to_check = f"{location}/{next_problem_id}.py"
         if isfile(file_name_to_check):
@@ -80,7 +79,7 @@ def set_up_next():
 
 def set_and_run_problem_module(problem_path):
     raise NotImplementedError
-    # probably first set the module level problem_id variable and then call a seperate function to run it (which should
+    # probably first set the module level problem_id variable and then call a separate function to run it (which should
     # also be used in the main function normally)
 
 
@@ -112,7 +111,6 @@ def change_code(next_problem_id: str):
 def scrape_and_create_problem_module(next_problem_id: str, next_problem_path: str):
     url = f"https://open.kattis.com/problems/{next_problem_id}"
     response = requests.get(url)
-    text = None
     if response.status_code == 200:
         text = str(response.content)
     else:
