@@ -9,10 +9,10 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.shatteredcake as current_problem
+import problems.ratingproblems as current_problem
 from utils import diff_strings
 
-problem_id = "shatteredcake"
+problem_id = "ratingproblems"
 # problem_id = "current_problem"
 
 problem_locations = ["problems/archive", "problems"]
@@ -157,31 +157,6 @@ def replace_template_io(io_pairs, matches):
     for i in range(io_pairs):
         new_module = new_module.replace(f"input_{i + 1}", matches[i])
         new_module = new_module.replace(f"output_{i + 1}", matches[i + 1])
-    # i1, i2, i3, i4, o1, o2, o3, o4 = [None] * 8
-    # if io_pairs >= 1:
-    #     i1 = matches[0]
-    #     o1 = matches[1]
-    # if io_pairs >= 2:
-    #     i2 = matches[2]
-    #     o2 = matches[3]
-    # if io_pairs >= 3:
-    #     i3 = matches[4]
-    #     o3 = matches[5]
-    # if io_pairs >= 4:
-    #     i4 = matches[6]
-    #     o4 = matches[7]
-    # if io_pairs > 0:
-    #     new_module = new_module.replace("input_1", i1)
-    #     new_module = new_module.replace("output_1", o1)
-    # if io_pairs > 1:
-    #     new_module = new_module.replace("input_2", i2)
-    #     new_module = new_module.replace("output_2", o2)
-    # if io_pairs > 2:
-    #     new_module = new_module.replace("input_3", i3)
-    #     new_module = new_module.replace("output_3", o3)
-    # if io_pairs > 3:
-    #     new_module = new_module.replace("input_4", i4)
-    #     new_module = new_module.replace("output_4", o4)
     return new_module
 
 
