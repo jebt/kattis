@@ -9,10 +9,10 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.spavanac as current_problem
+import problems.shatteredcake as current_problem
 from utils import diff_strings
 
-problem_id = "spavanac"
+problem_id = "shatteredcake"
 # problem_id = "current_problem"
 
 problem_locations = ["problems/archive", "problems"]
@@ -84,11 +84,12 @@ def set_and_run_problem_module(problem_path):
 
 
 def change_code(next_problem_id: str):
+    # change "problem_id = ..."
     with open("kattis.py") as f:
         kattis_code = f.read()
     new_kattis_code = kattis_code.replace('pro' + 'blem_id = "ne' + 'xt"', f'problem_id = "{next_problem_id}"')
 
-    # import statement
+    # change import statement
     pattern = r'import\s+problems\.(\w+)\s+as\s+current_problem'
     match = re.search(pattern, new_kattis_code)
     if match:
@@ -99,13 +100,8 @@ def change_code(next_problem_id: str):
     new_kattis_code = new_kattis_code.replace(
         f"import problems.{captured_string} as current_problem", f"import problems.{next_problem_id} as current_problem"
     )
-
     with open("kattis.py", "w") as f:
         f.write(new_kattis_code)
-
-    raise NotImplementedError
-    # change import statement?
-    # change "problem_id = ..."?
 
 
 def scrape_and_create_problem_module(next_problem_id: str, next_problem_path: str):
@@ -119,6 +115,8 @@ def scrape_and_create_problem_module(next_problem_id: str, next_problem_path: st
     with open("template.py") as f:
         new_module = f.read()
     if "<th>Sample Output 1</th>" in text:
+        samples_from_i = text.index("<th>Sample Output 1</th>")
+        text = text[samples_from_i::]
         pattern = re.compile(r'<pre>(.*?)</pre>', re.DOTALL)
         matches = pattern.findall(text)
         match_count = len(matches)
