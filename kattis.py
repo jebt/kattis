@@ -9,10 +9,10 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.ratingproblems as current_problem
+import problems.twosum as current_problem
 from utils import diff_strings
 
-problem_id = "ratingproblems"
+problem_id = "twosum"
 # problem_id = "current_problem"
 
 problem_locations = ["problems/archive", "problems"]
@@ -88,6 +88,8 @@ def change_code(next_problem_id: str):
     # change "problem_id = ..."
     with open("kattis.py") as f:
         kattis_code = f.read()
+
+    # string in next line is weirdly cut up so that it doesn't get replaced itself
     new_kattis_code = kattis_code.replace('pro' + 'blem_id = "ne' + 'xt"', f'problem_id = "{next_problem_id}"')
 
     # change import statement
@@ -154,9 +156,9 @@ def create_prepared_module(problem_text):
 def replace_template_io(io_pairs, matches):
     with open("template.py") as f:
         new_module = f.read()
-    for i in range(io_pairs):
-        new_module = new_module.replace(f"input_{i + 1}", matches[i])
-        new_module = new_module.replace(f"output_{i + 1}", matches[i + 1])
+    for i in range(1, io_pairs + 1):
+        new_module = new_module.replace(f"input_{i}", matches[i * 2 - 2])
+        new_module = new_module.replace(f"output_{i}", matches[i * 2 - 1])
     return new_module
 
 
