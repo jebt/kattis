@@ -9,10 +9,10 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.gcvwr as current_problem
+import problems.chanukah as current_problem
 from utils import diff_strings
 
-problem_id = "gcvwr"
+problem_id = "chanukah"
 # problem_id = "current_problem"
 
 problem_locations = ["problems/archive", "problems"]
@@ -22,6 +22,8 @@ def main():
     if problem_id == "next":
         set_up_next()
         sys.exit(1)
+    else:
+        assert problem_id == current_problem.__name__.split(".")[-1]
 
     problems = [current_problem]
     # problems = get_problems()
