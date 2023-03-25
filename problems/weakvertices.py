@@ -1,9 +1,10 @@
 from sys import stdin
 
+# noinspection LongLine
 samples = [
     (
         # Input 1
-        """9\n0 1 1 1 0 0 0 0 0\n1 0 0 0 0 0 1 0 0\n1 0 0 1 0 1 0 0 0\n1 0 1 0 0 1 1 0 0\n0 0 0 0 0 0 1 1 0\n0 0 1 1 0 0 0 0 0\n0 1 0 1 1 0 0 1 0\n0 0 0 0 1 0 1 0 1\n0 0 0 0 0 0 0 1 0\n1\n0\n-1\n""", # noqa
+        """9\n0 1 1 1 0 0 0 0 0\n1 0 0 0 0 0 1 0 0\n1 0 0 1 0 1 0 0 0\n1 0 1 0 0 1 1 0 0\n0 0 0 0 0 0 1 1 0\n0 0 1 1 0 0 0 0 0\n0 1 0 1 1 0 0 1 0\n0 0 0 0 1 0 1 0 1\n0 0 0 0 0 0 0 1 0\n1\n0\n-1\n""",
         # Output 1
         """1 8\n0\n"""
     ),
@@ -41,11 +42,6 @@ def solve(problem_input: str):
         out += f"{out_for_graph.strip()}\n"
 
     return out.strip()
-
-
-
-
-
 
 
 if __name__ == "__main__":

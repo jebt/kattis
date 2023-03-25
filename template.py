@@ -1,5 +1,6 @@
 from sys import stdin
 
+# noinspection LongLine
 samples = [
     (
         # Input 1
