@@ -1,4 +1,3 @@
-import math
 from sys import stdin
 
 # noinspection LongLine
@@ -17,16 +16,30 @@ def solve(problem_input: str):
     datasets = problem_input.splitlines()[1::]
     for dataset in datasets:
         i, b, n = [int(x) for x in dataset.split()]
-        start_from_exponent = math.ceil(math.log(n, b))
         ssd = 0
-        remaining = n
-        for exponent in range(start_from_exponent, -1, -1):
-            chunk = b**exponent
-            times = remaining // chunk
-            ssd += times**2
-            remaining -= chunk * times
+
+        # start_from_exponent = math.ceil(math.log(n, b))
+        # for exponent in range(start_from_exponent, -1, -1):
+        #     chunk = b**exponent
+        #     times = n // chunk
+        #     ssd += times**2
+        #     n -= chunk * times
+
+        exponent = 0
+        while n > 0:
+            residue = n % b ** (exponent + 1)
+            ssd += (residue // b ** exponent) ** 2
+            n -= residue
+            exponent += 1
+
         out += f"{i} {ssd}\n"
     return out.strip()
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
