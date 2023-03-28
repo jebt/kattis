@@ -9,10 +9,10 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.sumsquareddigits as current_problem
+import problems.classfieldtrip as current_problem
 from utils import diff_strings
 
-problem_id = "sumsquareddigits"
+problem_id = "classfieldtrip"
 # problem_id = "current_problem"
 
 problem_locations = ["problems/archive", "problems"]
