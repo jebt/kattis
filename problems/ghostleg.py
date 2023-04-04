@@ -37,8 +37,5 @@ def solve(problem_input: str):
     return "\n".join(result).strip()
 
 
-
-
-
 if __name__ == "__main__":
     print(solve(stdin.read()))
