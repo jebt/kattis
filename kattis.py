@@ -4,6 +4,7 @@ import re
 import subprocess
 import sys
 import webbrowser
+import colorama
 from os import listdir
 from os.path import splitext, isfile
 
@@ -12,7 +13,7 @@ import requests
 import problems.undeadoralive as current_problem
 from utils import diff_strings
 
-problem_id = "undeadoralive"
+problem_id = "all"
 # problem_id = "current_problem"
 
 PROBLEM_LOCATIONS = ["problems/archive", "problems"]
@@ -35,16 +36,19 @@ def main():
 
 
 def run_problems(problems, ask_to_submit):
+    all_succes = True
     for problem in problems:
         print(f"\n{problem.__name__}")
         succes = True
         for i, (sample_input, sample_output) in enumerate(problem.samples):
             calculated_output = str(problem.solve(sample_input))
             if calculated_output == sample_output.strip():
-                print(f"[sample {i}] correct")
+                print(f"[sample {i}] {colorama.Fore.GREEN}correct{colorama.Style.RESET_ALL}")
             else:
                 succes = False
-                print(f"[sample {i}] see diff below\n" + diff_strings(calculated_output, sample_output))
+                all_succes = False
+                print(f"{colorama.Fore.RED}[sample {i}] see diff below{colorama.Style.RESET_ALL}\n" +
+                      diff_strings(calculated_output, sample_output))
         if ask_to_submit and succes:
             # Get the path of the current Python executable and the current script
             python_exe = sys.executable
@@ -56,6 +60,10 @@ def run_problems(problems, ask_to_submit):
 
             # Call the script with an argument 'argument1'
             subprocess.run([python_exe, script_path, f'problems/{problem_id}.py'])
+    if all_succes:
+        print("\n" + colorama.Fore.GREEN + "all good" + colorama.Style.RESET_ALL)
+    else:
+        print("\n" + colorama.Fore.RED + "mistakes were made" + colorama.Style.RESET_ALL)
 
 
 def set_up_next():
