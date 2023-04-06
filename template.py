@@ -26,6 +26,12 @@ samples = [
         # Output 4
         """output_4"""
     ),
+    (
+        # Input 5
+        """input_5""",
+        # Output 5
+        """output_5"""
+    ),
 ]
 
 

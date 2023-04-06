@@ -15,18 +15,26 @@ from utils import diff_strings
 problem_id = "zamka"
 # problem_id = "current_problem"
 
-problem_locations = ["problems/archive", "problems"]
+PROBLEM_LOCATIONS = ["problems/archive", "problems"]
 
 
 def main():
+    ask_to_submit = True
     if problem_id == "next":
-        set_up_next()
-        sys.exit(1)
+        problems = set_up_next()
+        assert len(problems) == 1, f"{len(problems)=}, should be 1 in this case"
+    elif problem_id == "all":
+        problems = get_problems()
+        assert len(problems) > 1, f"{len(problems)=}, should be more than 1"
+        ask_to_submit = False
     else:
-        assert problem_id == current_problem.__name__.split(".")[-1]
+        problem_name = current_problem.__name__.split(".")[-1]
+        assert problem_id == problem_name, f"problem_id {problem_id} doesn't match problem_name {problem_name}"
+        problems = [current_problem]
+    run_problems(problems, ask_to_submit)
 
-    problems = [current_problem]
-    # problems = get_problems()
+
+def run_problems(problems, ask_to_submit):
     for problem in problems:
         print(f"\n{problem.__name__}")
         succes = True
@@ -37,7 +45,7 @@ def main():
             else:
                 succes = False
                 print(f"[sample {i}] see diff below\n" + diff_strings(calculated_output, sample_output))
-        if succes:
+        if ask_to_submit and succes:
             # Get the path of the current Python executable and the current script
             python_exe = sys.executable
             script_path = os.path.join(os.getcwd(), 'submit.py')
@@ -58,17 +66,11 @@ def set_up_next():
     webbrowser.open(url)
 
     # check if it exists locally
-    next_exists = False
-    for location in problem_locations:
+    for location in PROBLEM_LOCATIONS:
         file_name_to_check = f"{location}/{next_problem_id}.py"
         if isfile(file_name_to_check):
-            next_exists = True
             next_problem_path = file_name_to_check
             print(f"{next_problem_path} exists locally but is not accepted on kattis.com yet, exiting")
-            # instead of exiting implement that it runs it (change print above)
-            # set_problem(next_problem_path)
-    if next_exists:
-        sys.exit(1)
     else:
         # make pid.py with scraped samples
         next_problem_path = f"problems/{next_problem_id}.py"
@@ -76,14 +78,22 @@ def set_up_next():
         # change problem_id = "..." (if possible during runtime)
         change_code(next_problem_id)
         # import problems.{problem_id} as problem and run it
-        run_problem_module(next_problem_path)
+
+    problems = import_and_set_problems([next_problem_path])
+    return problems
 
 
-def run_problem_module(problem_path):
-    print(problem_path)
-    raise NotImplementedError
-    # probably first set the module level problem_id variable and then call a separate function to run it (which should
-    # also be used in the main function normally)
+def import_and_set_problems(problem_paths):
+    problems = []
+    for problem_path in problem_paths:
+        location = "/".join(problem_path.split("/")[:-1])
+        file_name = problem_path.split("/")[-1]
+        name_parts = splitext(file_name)
+        if name_parts[1] == ".py":
+            module = f"{location.replace('/', '.')}.{name_parts[0]}"
+            problems.append(importlib.import_module(module))
+            print(f"imported {module}")
+    return problems
 
 
 def change_code(next_problem_id: str):
@@ -138,13 +148,13 @@ def create_prepared_module(problem_text):
         raise ValueError("No samples?")
     if match_count % 2 != 0:
         raise ValueError("Uneven number of sample inputs + sample outputs?")
-    if match_count > 8:
-        raise ValueError("More than 4 sample input+output pairs?")
+    if match_count > 10:
+        raise ValueError("More than 5 sample input+output pairs?")
     io_pairs = match_count // 2
     new_module = replace_template_io(io_pairs, matches)
 
     # delete unused input/output samples from the template
-    for i in range(io_pairs + 1, 5):
+    for i in range(io_pairs + 1, 6):
         new_module = new_module.replace(f'''
     (
         # Input {i}
@@ -193,7 +203,7 @@ def extract_next_problem_id(response_content):
 
 def get_problems():
     problems = []
-    for location in problem_locations:
+    for location in PROBLEM_LOCATIONS:
         for file_name in listdir(location):
             name_parts = splitext(file_name)
             if name_parts[1] == ".py":
