@@ -10,10 +10,10 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.undeadoralive as current_problem
+import problems.detaileddifferences as current_problem
 from utils import diff_strings
 
-problem_id = "all"
+problem_id = "detaileddifferences"
 # problem_id = "current_problem"
 
 PROBLEM_LOCATIONS = ["problems/archive", "problems"]
@@ -60,10 +60,11 @@ def run_problems(problems, ask_to_submit):
 
             # Call the script with an argument 'argument1'
             subprocess.run([python_exe, script_path, f'problems/{problem_id}.py'])
-    if all_succes:
-        print("\n" + colorama.Fore.GREEN + "all good" + colorama.Style.RESET_ALL)
-    else:
-        print("\n" + colorama.Fore.RED + "mistakes were made" + colorama.Style.RESET_ALL)
+    if len(problems) > 1:
+        if all_succes:
+            print("\n" + colorama.Fore.GREEN + "all good" + colorama.Style.RESET_ALL)
+        else:
+            print("\n" + colorama.Fore.RED + "mistakes were made" + colorama.Style.RESET_ALL)
 
 
 def set_up_next():
