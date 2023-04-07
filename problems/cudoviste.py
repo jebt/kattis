@@ -25,29 +25,18 @@ samples = [
 
 def solve(problem_input: str):
     lines = problem_input.splitlines()
-    grid = []
-    for line in lines[1::]:
-        grid.append(list(line))
+    grid = lines[1::]
 
-    c0, c1, c2, c3, c4 = 0, 0, 0, 0, 0
+    no_squashed = [0, 0, 0, 0, 0]
     for y, row in enumerate(grid[:-1]):
         for x, col in enumerate(row[:-1]):
-            spot = row[x] + row[x + 1] + grid[y + 1][x] + grid[y + 1][x + 1]
+            # spot = col + row[x+1] + grid[y+1][x] + grid[y+1][x+1]
+            spot = row[x:x + 2] + grid[y + 1][x:x + 2]
             if "#" in spot:
                 continue
-            number_of_cars = spot.count("X")
-            if number_of_cars == 0:
-                c0 += 1
-            elif number_of_cars == 1:
-                c1 += 1
-            elif number_of_cars == 2:
-                c2 += 1
-            elif number_of_cars == 3:
-                c3 += 1
-            else:
-                c4 += 1
+            no_squashed[spot.count("X")] += 1
 
-    return f"{c0}\n{c1}\n{c2}\n{c3}\n{c4}"
+    return "\n".join(str(n) for n in no_squashed)
 
 
 if __name__ == "__main__":
