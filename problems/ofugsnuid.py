@@ -18,11 +18,13 @@ samples = [
 
 
 def solve(problem_input: str):
-    numbers = problem_input.splitlines()[1::]
-    out = ""
-    for number in reversed(numbers):
-        out += f"{number}\n"
-    return out.strip()
+    # numbers = problem_input.splitlines()[1::]
+    # out = ""
+    # for number in reversed(numbers):
+    #     out += f"{number}\n"
+    # return out.strip()
+
+    return "\n".join(problem_input.splitlines()[:0:-1])
 
 
 if __name__ == "__main__":
