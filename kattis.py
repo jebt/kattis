@@ -10,11 +10,11 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.ofugsnuid as current_problem
+import problems.pieceofcake2 as current_problem
 
 from utils import diff_strings
 
-problem_id = "ofugsnuid"
+problem_id = "pieceofcake2"
 # problem_id = "current_problem"
 
 PROBLEM_LOCATIONS = ["problems/archive", "problems"]
@@ -185,7 +185,8 @@ def replace_template_io(io_pairs, matches):
 
 
 def find_next_problem_id():
-    url = "https://open.kattis.com/problems?order=%2Bdifficulty_category"
+    # url = "https://open.kattis.com/problems?order=%2Bdifficulty_category"
+    url = "https://open.kattis.com/problems?order=difficulty_category"
     with open("config.txt") as f:
         cookie = f.read()
     headers = {
@@ -207,7 +208,8 @@ def extract_next_problem_id(response_content):
     if match:
         return match.group(1)
     else:
-        print('No matches found. Perhapss all problems on the first page are "Accepted" and should look next page!')
+        print('No matches found. Perhapss all problems on the first page are "Accepted" and should look next page!'
+              'Or maybe EduSiteCookie needs to be refreshed.')
         raise NotImplementedError
 
 
