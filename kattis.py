@@ -1,3 +1,4 @@
+import html
 import importlib
 import os
 import re
@@ -10,11 +11,11 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.skruop as current_problem
+import problems.smil as current_problem
 
 from utils import diff_strings
 
-problem_id = "skruop"
+problem_id = "smil"
 # problem_id = "current_problem"
 
 PROBLEM_LOCATIONS = ["problems/archive", "problems"]
@@ -179,8 +180,8 @@ def replace_template_io(io_pairs, matches):
     with open("template.py") as f:
         new_module = f.read()
     for i in range(1, io_pairs + 1):
-        new_module = new_module.replace(f"input_{i}", matches[i * 2 - 2])
-        new_module = new_module.replace(f"output_{i}", matches[i * 2 - 1])
+        new_module = new_module.replace(f"input_{i}", html.unescape(matches[i * 2 - 2]))
+        new_module = new_module.replace(f"output_{i}", html.unescape(matches[i * 2 - 1]))
     return new_module
 
 
