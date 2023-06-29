@@ -11,11 +11,11 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.pyramids as current_problem
+import problems.knotknowledge as current_problem
 
 from utils import diff_strings
 
-problem_id = "pyramids"
+problem_id = "knotknowledge"
 # problem_id = "current_problem"
 
 PROBLEM_LOCATIONS = ["problems/archive", "problems"]
