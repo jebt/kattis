@@ -48,6 +48,5 @@ def solve(problem_input: str):
     return portion / 36
 
 
-
 if __name__ == "__main__":
     print(solve(stdin.read()))
