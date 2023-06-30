@@ -26,9 +26,11 @@ def solve(problem_input: str):
 
     time = leave_time + transfer_times[0]
     for stop_number in range(number_of_stops):
-        missed_bus_by = time % schedule_intervals[stop_number]
+        schedule_interval = schedule_intervals[stop_number]
+        # time += (schedule_interval - time % schedule_interval) % schedule_interval  # less readable than below
+        missed_bus_by = time % schedule_interval
         if missed_bus_by != 0:
-            time += schedule_intervals[stop_number] - missed_bus_by
+            time += schedule_interval - missed_bus_by
         time += transit_times[stop_number]
         time += transfer_times[stop_number + 1]
 

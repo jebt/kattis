@@ -11,11 +11,11 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.transitwoes as current_problem
+import problems.hopper as current_problem
 
 from utils import diff_strings
 
-problem_id = "transitwoes"
+problem_id = "get hopper"
 # problem_id = "current_problem"
 
 PROBLEM_LOCATIONS = ["problems/archive", "problems"]
@@ -30,6 +30,10 @@ def main():
         problems = get_problems()
         assert len(problems) > 1, f"{len(problems)=}, should be more than 1"
         ask_to_submit = False
+    elif len(problem_id.split()) > 1 and problem_id.split()[0] == "get":
+        specific_problem_id = "".join(problem_id.split()[1::])
+        problems = set_up_specific(specific_problem_id)
+        assert len(problems) == 1, f"{len(problems)=}, should be 1 in this case"
     else:
         problem_name = current_problem.__name__.split(".")[-1]
         assert problem_id == problem_name, f"problem_id {problem_id} doesn't match problem_name {problem_name}"
@@ -69,9 +73,18 @@ def run_problems(problems, ask_to_submit):
             print("\n" + colorama.Fore.RED + "mistakes were made" + colorama.Style.RESET_ALL)
 
 
-def set_up_next():
-    next_problem_id = find_next_problem_id()
+def set_up_specific(specific_problem_id):
+    problems = set_up(specific_problem_id)
+    return problems
 
+
+def set_up_next() -> list:
+    next_problem_id = find_next_problem_id()
+    problems = set_up(next_problem_id)
+    return problems
+
+
+def set_up(next_problem_id: str):
     # open the webpage with the problem description
     url = f"https://open.kattis.com/problems/{next_problem_id}"
     webbrowser.open(url)
