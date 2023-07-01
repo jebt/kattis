@@ -11,11 +11,11 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.hopper as current_problem
+import problems.stickykeys as current_problem
 
 from utils import diff_strings
 
-problem_id = "get hopper"
+problem_id = "stickykeys"
 # problem_id = "current_problem"
 
 PROBLEM_LOCATIONS = ["problems/archive", "problems"]
@@ -127,6 +127,7 @@ def change_code(next_problem_id: str):
 
     # string in next line is weirdly cut up so that it doesn't get replaced itself
     new_kattis_code = kattis_code.replace('pro' + 'blem_id = "ne' + 'xt"', f'problem_id = "{next_problem_id}"')
+    new_kattis_code = new_kattis_code.replace('pro' + 'blem_id = "ge' + 't ', f'problem_id = "')
 
     # change import statement
     pattern = r'import\s+problems\.(\w+)\s+as\s+current_problem'
