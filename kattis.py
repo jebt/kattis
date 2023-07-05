@@ -11,11 +11,11 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.reversebinary as current_problem
+import problems.relocation as current_problem
 
 from utils import diff_strings
 
-problem_id = "reversebinary"
+problem_id = "relocation"
 # problem_id = "current_problem"
 
 PROBLEM_LOCATIONS = ["problems/archive", "problems"]
@@ -68,7 +68,7 @@ def run_problems(problems, ask_to_submit):
             subprocess.run([python_exe, script_path, f'problems/{problem_id}.py'])
     if len(problems) > 1:
         if all_succes:
-            print("\n" + colorama.Fore.GREEN + "all good" + colorama.Style.RESET_ALL)
+            print("\n" + colorama.Fore.GREEN + "all good" + colorama.Style.RESET_ALL + f" ({len(problems)})")
         else:
             print("\n" + colorama.Fore.RED + "mistakes were made" + colorama.Style.RESET_ALL)
 
