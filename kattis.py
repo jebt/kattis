@@ -11,11 +11,11 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.kornislav as current_problem
+import problems.janitortroubles as current_problem
 
 from utils import diff_strings
 
-problem_id = "kornislav"
+problem_id = "janitortroubles"
 # problem_id = "current_problem"
 
 PROBLEM_LOCATIONS = ["problems/archive", "problems"]
