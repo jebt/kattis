@@ -11,7 +11,7 @@ from os.path import splitext, isfile
 
 import requests
 
-import problems.upprodun as current_problem
+import problems.archive.upprodun as current_problem
 
 from utils import diff_strings
 
